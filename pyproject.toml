@@ -1,4 +1,5 @@
 [project]
+
 name = "cumulonimbus-models"
 version = "0.0.1"
 requires-python = ">=3.10"
@@ -53,13 +54,11 @@ no_implicit_reexport = true
 disallow_untyped_defs = true
 
 
-[tool.setuptools]
-packages = ["cumulonimbus_models"]
-package-dir = { "" = "src" }
-
-
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.txt"] }
+
+#[tool.setuptools.package-data]
+#cumulonimbus_models = ["py.typed"]
 
 [tool.pydantic-mypy]
 init_forbid_extra = true
