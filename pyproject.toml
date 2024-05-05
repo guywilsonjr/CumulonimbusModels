@@ -2,27 +2,16 @@
 name = "cumulonimbus-models"
 version = "0.0.1"
 requires-python = ">=3.10"
+dynamic = ["dependencies"]
 
 readme = "README.md"
-dependencies = [
-    'pydantic',
-    'aws-cdk.aws-lambda-python-alpha'
-]
 authors = [
     { name = "Guy Wilson", email = "guywilsonjr@gmail.com" },
 ]
 maintainers = [
     { name = "Guy Wilson", email = "guywilsonjr@gmail.com" },
 ]
-keywords = [
-    "aws",
-    "cdk",
-    "lambda",
-    "python",
-    "api",
-    "gateway",
-    "rest",
-]
+
 
 classifiers = [
     # How mature is this project? Common values are
@@ -35,7 +24,6 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
     # Pick your license as you wish (see also "license" above)
     "License :: OSI Approved :: Apple Public Source License",    # Specify the Python versions you support here.
-    "Framework :: AWS CDK :: 2",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -69,6 +57,9 @@ disallow_untyped_defs = true
 packages = ["cumulonimbus_models"]
 package-dir = { "" = "src" }
 
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
 
 [tool.pydantic-mypy]
 init_forbid_extra = true
