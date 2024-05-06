@@ -5,8 +5,6 @@ class AgentRegisterRequest(BaseModel):
     hostname: str
 
 
-
-
 class AgentRegisterResponse(BaseModel):
     agent_id: str
     agent_key: str
