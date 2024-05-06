@@ -1,13 +1,9 @@
-from typing import Optional
-
 from pydantic import BaseModel
-
-from cumulonimbus_models.network import NetworkInterface
 
 
 class AgentRegisterRequest(BaseModel):
     hostname: str
-    ifcs: list[NetworkInterface]
+
 
 
 
