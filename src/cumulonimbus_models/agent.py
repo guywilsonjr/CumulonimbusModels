@@ -8,7 +8,7 @@ from cumulonimbus_models.network import NetworkInterface
 class AgentRegisterRequest(BaseModel):
     hostname: str
     ifcs: list[NetworkInterface]
-    agent_id: Optional[str] = None
+
 
 
 class AgentRegisterResponse(BaseModel):

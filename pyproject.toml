@@ -57,8 +57,6 @@ disallow_untyped_defs = true
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.txt"] }
 
-#[tool.setuptools.package-data]
-#cumulonimbus_models = ["py.typed"]
 
 [tool.pydantic-mypy]
 init_forbid_extra = true
