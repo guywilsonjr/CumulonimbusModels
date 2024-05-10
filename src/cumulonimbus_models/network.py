@@ -1,4 +1,3 @@
-from typing import Optional
 
 from pydantic import BaseModel
 
@@ -21,8 +20,5 @@ class GatewaySubnetConnection(BaseModel):
 
 class NetworkInterface(BaseModel):
     ifc_name: str
-    gateways: list[Gateway]
-    default_gateway: Optional[Gateway]
-    subnets: list[Subnet]
-    gateway_subnet_connections: list[GatewaySubnetConnection]
+    mac_address: str
 
