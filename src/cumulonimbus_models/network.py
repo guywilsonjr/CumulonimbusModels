@@ -19,6 +19,6 @@ class GatewaySubnetConnection(BaseModel):
 
 
 class NetworkInterface(BaseModel):
-    ifc_name: str
+    name: str
     mac_address: str
 
