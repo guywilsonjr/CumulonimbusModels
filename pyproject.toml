@@ -3,7 +3,7 @@
 name = "cumulonimbus-models"
 version = "0.0.1"
 requires-python = ">=3.10"
-dynamic = ["dependencies"]
+dynamic = ["dependencies", "version"]
 
 readme = "README.md"
 authors = [
@@ -35,7 +35,7 @@ Homepage = "https://github.com/guywilsonjr/cdk-simple-constructs-python"
 Repository = "https://github.com/guywilsonjr/cdk-simple-constructs-python"
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [tool.mypy]
@@ -62,3 +62,5 @@ dependencies = { file = ["requirements.txt"] }
 init_forbid_extra = true
 init_typed = true
 warn_required_dynamic_aliases = true
+
+[tool.setuptools_scm]
