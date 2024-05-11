@@ -1,6 +1,8 @@
+from datetime import datetime
 from enum import StrEnum
-from typing import Dict
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
+
+from utils import JSON
 
 
 class OperationType(StrEnum):
@@ -10,10 +12,22 @@ class OperationType(StrEnum):
 class Operation(BaseModel):
     id: str
     type: OperationType
-    parameters: Dict[str, str | int | float | bool | None]
+    parameters: JSON
 
 
-class UpdateOperation(Operation):
-    type: OperationType = OperationType.UPDATE
-    parameters: Dict[str, str | int | float | bool | None] = {}
+class OperationResult(BaseModel):
+    output: str
 
+
+class UpdateOperationResultRequest(BaseModel):
+    id: str
+    started: datetime
+    completed: datetime
+    result: OperationResult
+
+    @field_validator('result')
+    @classmethod
+    def validate_result(cls, v: JSON) -> JSON:
+        if 'result_str' not in v:
+            raise ValueError('must contain a result_str key')
+        return v
