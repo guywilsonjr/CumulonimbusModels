@@ -15,6 +15,23 @@ class Operation(BaseModel):
     parameters: JSON
 
 
+class SubmitOperationRequest(BaseModel):
+    agent_id: str
+    type: OperationType
+    parameters: JSON
+
+
+class SubmitUpdateOperationRequest(SubmitOperationRequest):
+    type: OperationType = OperationType.UPDATE
+    parameters: JSON = {}
+
+
+class SubmitOperationResponse(BaseModel):
+    agent_id: str
+    operation_id: str
+    submitted: datetime
+
+
 class OperationResult(BaseModel):
     output: str
 
