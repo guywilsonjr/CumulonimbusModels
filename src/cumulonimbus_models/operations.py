@@ -20,7 +20,8 @@ class OperationResult(BaseModel):
 
 
 class UpdateOperationResultRequest(BaseModel):
-    id: str
+    agent_id: str
+    operation_id: str
     started: datetime
     completed: datetime
     result: OperationResult
