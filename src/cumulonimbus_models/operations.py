@@ -1,8 +1,17 @@
 from datetime import datetime
 from enum import StrEnum
-from pydantic import BaseModel, field_validator
+from typing import ClassVar, Optional
 
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+from constants import SUBMIT_OPERATION_FORMAT, SUBMIT_OPERATION_PATH, UPDATE_OPERATION_RESULT_FORMAT, UPDATE_OPERATION_RESULT_PATH
+from api import APIRequest
 from utils import JSON
+
+
+class OperationResultStatus(StrEnum):
+    SUCCESS = 'SUCCESS'
+    FAILURE = 'FAILURE'
 
 
 class OperationType(StrEnum):
@@ -15,8 +24,9 @@ class Operation(BaseModel):
     parameters: JSON
 
 
-class SubmitOperationRequest(BaseModel):
-    agent_id: str
+class SubmitOperationRequest(APIRequest):
+    path: ClassVar[str] = Field(default=SUBMIT_OPERATION_PATH, exclude=True, const=True)
+    format: ClassVar[str] = Field(default=SUBMIT_OPERATION_FORMAT, exclude=True, const=True)
     type: OperationType
     parameters: JSON
 
@@ -26,26 +36,34 @@ class SubmitUpdateOperationRequest(SubmitOperationRequest):
     parameters: JSON = {}
 
 
-class SubmitOperationResponse(BaseModel):
+class OperationDDBEntry(BaseModel):
     agent_id: str
     operation_id: str
+    operation: OperationType
+
+
+class SubmitOperationResponse(OperationDDBEntry):
     submitted: datetime
 
 
 class OperationResult(BaseModel):
+    model_config = ConfigDict(extra='allow')
     output: str
+    display_output: Optional[str] = None
+    status: OperationResultStatus
+
+    @model_validator(mode='after')
+    def validate_outputs(self) -> JSON:
+        if self.display_output is None:
+            self.display_output = self.output
+        return self
 
 
-class UpdateOperationResultRequest(BaseModel):
-    agent_id: str
-    operation_id: str
+class UpdateOperationResultRequest(APIRequest):
+    path: ClassVar[str] = Field(default=UPDATE_OPERATION_RESULT_PATH, exclude=True, const=True)
+    format: ClassVar[str] = Field(default=UPDATE_OPERATION_RESULT_FORMAT, exclude=True, const=True)
     started: datetime
     completed: datetime
-    result: OperationResult
+    operation_result: OperationResult
 
-    @field_validator('result')
-    @classmethod
-    def validate_result(cls, v: JSON) -> JSON:
-        if 'result_str' not in v:
-            raise ValueError('must contain a result_str key')
-        return v
+
