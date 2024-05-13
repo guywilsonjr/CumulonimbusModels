@@ -17,5 +17,4 @@ class AgentRegisterResponse(BaseModel):
     agent_key: str
     ip_address: str
     operations_queue_url: str
-    operation_results_queue_url: str
 
