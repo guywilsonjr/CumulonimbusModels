@@ -36,13 +36,18 @@ class SubmitUpdateOperationRequest(SubmitOperationRequest):
     parameters: JSON = {}
 
 
-class OperationDDBEntry(BaseModel):
+class OperationBase(BaseModel):
+    agent_id: str
+    operation_id: str
+
+
+class OperationDDBEntry(OperationBase):
     agent_id: str
     operation_id: str
     operation: OperationType
 
 
-class SubmitOperationResponse(OperationDDBEntry):
+class SubmitOperationResponse(OperationBase):
     submitted: datetime
 
 
