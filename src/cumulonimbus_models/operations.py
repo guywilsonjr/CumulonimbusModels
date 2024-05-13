@@ -10,6 +10,7 @@ from utils import JSON
 
 
 class OperationResultStatus(StrEnum):
+    PENDING = 'PENDING'
     SUCCESS = 'SUCCESS'
     FAILURE = 'FAILURE'
 
