@@ -1,4 +1,4 @@
-REGISTER_AGENT_PATH = '/agent/<agent_id>/register'
+REGISTER_AGENT_PATH = '/agent/register'
 UNREGISTER_AGENT_PATH = '/agent/<agent_id>'
 SUBMIT_OPERATION_PATH = '/agent/<agent_id>/operation/submit'
 UPDATE_OPERATION_RESULT_PATH = '/agent/<agent_id>/operation/<operation_id>/result'
