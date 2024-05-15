@@ -37,15 +37,11 @@ class SubmitOperationRequest(APIRequest):
     parameters: JSON
 
 
-class SubmitUpdateOperationRequest(SubmitOperationRequest):
-    type: OperationType = OperationType.UPDATE
-    parameters: JSON = {}
-
-
 class OperationDDBEntry(OperationBase):
     agent_id: str
     operation_id: str
     operation: OperationType
+    submitted: datetime
 
 
 class SubmitOperationResponse(OperationBase):
