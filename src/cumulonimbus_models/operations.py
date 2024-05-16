@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime
 from enum import StrEnum
 from typing import ClassVar, Optional
@@ -37,14 +38,8 @@ class SubmitOperationRequest(APIRequest):
     parameters: JSON
 
 
-class OperationDDBEntry(OperationBase):
-    agent_id: str
+class SubmitOperationResponse(BaseModel):
     operation_id: str
-    operation: OperationType
-    submitted: datetime
-
-
-class SubmitOperationResponse(OperationBase):
     submitted: datetime
 
 
