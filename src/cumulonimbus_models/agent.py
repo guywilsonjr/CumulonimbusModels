@@ -23,7 +23,6 @@ class AgentRegisterResponse(BaseModel):
 class UnregisterAgentRequest(APIRequest):
     path: ClassVar[str] = Field(default=UNREGISTER_AGENT_PATH, exclude=True)
     format: ClassVar[str] = Field(default=UNREGISTER_AGENT_FORMAT, exclude=True)
-    agent_id: str
 
 
 class UnregisterAgentStatus(StrEnum):
