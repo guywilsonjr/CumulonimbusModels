@@ -4,7 +4,7 @@ from typing import ClassVar
 from pydantic import BaseModel, Field
 
 from cumulonimbus_models.api import APIRequest
-from constants import REGISTER_AGENT_FORMAT, REGISTER_AGENT_PATH, UNREGISTER_AGENT_FORMAT, UNREGISTER_AGENT_PATH
+from cumulonimbus_models.constants import REGISTER_AGENT_FORMAT, REGISTER_AGENT_PATH, UNREGISTER_AGENT_FORMAT, UNREGISTER_AGENT_PATH
 
 
 class AgentRegisterRequest(APIRequest):

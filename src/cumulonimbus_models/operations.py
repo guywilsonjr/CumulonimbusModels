@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field, model_validator
 
 from cumulonimbus_models.constants import SUBMIT_OPERATION_FORMAT, SUBMIT_OPERATION_PATH, UPDATE_OPERATION_RESULT_FORMAT, UPDATE_OPERATION_RESULT_PATH
 from api import APIRequest
-from utils import JSON
+from cumulonimbus_models.utils import JSON
 
 
 class OperationBase(BaseModel):
