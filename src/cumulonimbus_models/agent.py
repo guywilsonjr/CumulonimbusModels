@@ -8,8 +8,8 @@ from constants import REGISTER_AGENT_FORMAT, REGISTER_AGENT_PATH, UNREGISTER_AGE
 
 
 class AgentRegisterRequest(APIRequest):
-    path: ClassVar[str] = Field(default=REGISTER_AGENT_PATH, exclude=True, const=True)
-    format: ClassVar[str] = Field(default=REGISTER_AGENT_FORMAT, exclude=True, const=True)
+    path: ClassVar[str] = Field(default=REGISTER_AGENT_PATH, exclude=True)
+    format: ClassVar[str] = Field(default=REGISTER_AGENT_FORMAT, exclude=True)
     hostname: str
 
 
@@ -21,8 +21,8 @@ class AgentRegisterResponse(BaseModel):
 
 
 class UnregisterAgentRequest(APIRequest):
-    path: ClassVar[str] = Field(default=UNREGISTER_AGENT_PATH, exclude=True, const=True)
-    format: ClassVar[str] = Field(default=UNREGISTER_AGENT_FORMAT, exclude=True, const=True)
+    path: ClassVar[str] = Field(default=UNREGISTER_AGENT_PATH, exclude=True)
+    format: ClassVar[str] = Field(default=UNREGISTER_AGENT_FORMAT, exclude=True)
     agent_id: str
 
 

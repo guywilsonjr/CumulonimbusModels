@@ -31,8 +31,8 @@ class Operation(BaseModel):
 
 
 class SubmitOperationRequest(APIRequest):
-    path: ClassVar[str] = Field(default=SUBMIT_OPERATION_PATH, exclude=True, const=True)
-    format: ClassVar[str] = Field(default=SUBMIT_OPERATION_FORMAT, exclude=True, const=True)
+    path: ClassVar[str] = Field(default=SUBMIT_OPERATION_PATH, exclude=True)
+    format: ClassVar[str] = Field(default=SUBMIT_OPERATION_FORMAT, exclude=True)
     type: OperationType
     parameters: JSON
 
@@ -56,8 +56,8 @@ class OperationResult(BaseModel):
 
 
 class UpdateOperationResultRequest(APIRequest):
-    path: ClassVar[str] = Field(default=UPDATE_OPERATION_RESULT_PATH, exclude=True, const=True)
-    format: ClassVar[str] = Field(default=UPDATE_OPERATION_RESULT_FORMAT, exclude=True, const=True)
+    path: ClassVar[str] = Field(default=UPDATE_OPERATION_RESULT_PATH, exclude=True)
+    format: ClassVar[str] = Field(default=UPDATE_OPERATION_RESULT_FORMAT, exclude=True)
     started: datetime
     completed: datetime
     operation_result: OperationResult
