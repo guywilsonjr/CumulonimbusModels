@@ -51,7 +51,7 @@ class OperationResult(BaseModel):
     @model_validator(mode='after')
     def validate_outputs(self) -> JSON:
         if self.display_output is None:
-            self.display_output = self.output
+            self.display_output = self.operation_output
         return self
 
 
