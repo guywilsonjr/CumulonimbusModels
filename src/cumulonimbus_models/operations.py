@@ -36,6 +36,9 @@ class SubmitOperationRequest(APIRequest):
     type: OperationType
     parameters: JSON
 
+    def get_url(self, base_url: str, agent_id: str) -> str:
+        return f'{base_url}/{self.format.format(agent_id=agent_id)}'
+
 
 class SubmitOperationResponse(BaseModel):
     operation_id: str
@@ -61,3 +64,7 @@ class UpdateOperationResultRequest(APIRequest):
     started: datetime
     completed: datetime
     operation_result: OperationResult
+
+    def get_url(self, base_url: str, agent_id: str, operation_id: str) -> str:
+        return f'{base_url}/{self.format.format(agent_id=agent_id, operation_id=operation_id)}'
+
