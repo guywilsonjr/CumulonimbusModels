@@ -24,7 +24,7 @@ class UnregisterAgentRequest(APIRequest):
     format: str = Field(default=UNREGISTER_AGENT_FORMAT, exclude=True)
 
     def get_url(self, base_url: str, agent_id: str) -> str:
-        return f'{base_url}/{self.format.format(agent_id=agent_id)}'
+        return f'{base_url}{self.format.format(agent_id=agent_id)}'
 
 
 class UnregisterAgentStatus(StrEnum):

@@ -6,5 +6,5 @@ class APIRequest(BaseModel):
     format: str = Field(exclude=True)
 
     def get_url(self, base_url: str) -> str:
-        return f'{base_url}/{self.format}'
+        return f'{base_url}{self.format}'
 
