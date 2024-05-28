@@ -59,12 +59,12 @@ class OperationResult(BaseModel):
 
 
 class UpdateOperationResultRequest(APIRequest):
-    path: ClassVar[str] = Field(default=UPDATE_OPERATION_RESULT_PATH, exclude=True)
-    format: ClassVar[str] = Field(default=UPDATE_OPERATION_RESULT_FORMAT, exclude=True)
+    path: str = Field(default=UPDATE_OPERATION_RESULT_PATH, exclude=True)
+    format: str = Field(default=UPDATE_OPERATION_RESULT_FORMAT, exclude=True)
     started: datetime
     completed: datetime
     operation_result: OperationResult
 
     def get_url(self, base_url: str, agent_id: str, operation_id: str) -> str:
-        return f'{base_url}/{self.format.format(agent_id=agent_id, operation_id=operation_id)}'
+        return f'{base_url}/{self.format.default.format(agent_id=agent_id, operation_id=operation_id)}'
 
