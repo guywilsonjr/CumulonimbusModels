@@ -1,7 +1,5 @@
 from enum import StrEnum
-
 from pydantic import BaseModel, Field
-
 from cumulonimbus_models.api import APIRequest
 from cumulonimbus_models.constants import REGISTER_AGENT_FORMAT, REGISTER_AGENT_PATH, UNREGISTER_AGENT_FORMAT, UNREGISTER_AGENT_PATH
 

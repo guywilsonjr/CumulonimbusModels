@@ -2,7 +2,7 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Optional
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, field_serializer, model_validator
 
 from cumulonimbus_models.constants import SUBMIT_OPERATION_FORMAT, SUBMIT_OPERATION_PATH, UPDATE_OPERATION_RESULT_FORMAT, UPDATE_OPERATION_RESULT_PATH
 from cumulonimbus_models.api import APIRequest
@@ -44,6 +44,10 @@ class SubmitOperationResponse(BaseModel):
     operation_id: str
     submitted: datetime
 
+    @field_serializer('submitted')
+    def serialize_dt(self, dt: datetime, _info):
+        return dt.isoformat()
+
 
 class OperationResult(BaseModel):
     operation_output: str
@@ -64,6 +68,14 @@ class UpdateOperationResultRequest(APIRequest):
     started: datetime
     completed: datetime
     operation_result: OperationResult
+
+    @field_serializer('started')
+    def serialize_started(self, dt: datetime, _info):
+        return dt.isoformat()
+
+    @field_serializer('completed')
+    def serialize_completed(self, dt: datetime, _info):
+        return dt.isoformat()
 
     def get_url(self, base_url: str, agent_id: str, operation_id: str) -> str:
         return f'{base_url}{self.format.format(agent_id=agent_id, operation_id=operation_id)}'
