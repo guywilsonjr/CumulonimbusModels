@@ -1,6 +1,6 @@
 from datetime import datetime
 from enum import StrEnum
-from typing import ClassVar, Optional
+from typing import Optional
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -31,8 +31,8 @@ class Operation(BaseModel):
 
 
 class SubmitOperationRequest(APIRequest):
-    path: ClassVar[str] = Field(default=SUBMIT_OPERATION_PATH, exclude=True)
-    format: ClassVar[str] = Field(default=SUBMIT_OPERATION_FORMAT, exclude=True)
+    path: str = Field(default=SUBMIT_OPERATION_PATH, exclude=True)
+    format: str = Field(default=SUBMIT_OPERATION_FORMAT, exclude=True)
     type: OperationType
     parameters: JSON
 

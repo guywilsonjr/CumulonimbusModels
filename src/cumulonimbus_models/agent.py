@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import ClassVar
 
 from pydantic import BaseModel, Field
 
@@ -8,8 +7,8 @@ from cumulonimbus_models.constants import REGISTER_AGENT_FORMAT, REGISTER_AGENT_
 
 
 class AgentRegisterRequest(APIRequest):
-    path: ClassVar[str] = Field(default=REGISTER_AGENT_PATH, exclude=True)
-    format: ClassVar[str] = Field(default=REGISTER_AGENT_FORMAT, exclude=True)
+    path: str = Field(default=REGISTER_AGENT_PATH, exclude=True)
+    format: str = Field(default=REGISTER_AGENT_FORMAT, exclude=True)
     hostname: str
 
 
@@ -21,8 +20,8 @@ class AgentRegisterResponse(BaseModel):
 
 
 class UnregisterAgentRequest(APIRequest):
-    path: ClassVar[str] = Field(default=UNREGISTER_AGENT_PATH, exclude=True)
-    format: ClassVar[str] = Field(default=UNREGISTER_AGENT_FORMAT, exclude=True)
+    path: str = Field(default=UNREGISTER_AGENT_PATH, exclude=True)
+    format: str = Field(default=UNREGISTER_AGENT_FORMAT, exclude=True)
 
     def get_url(self, base_url: str, agent_id: str) -> str:
         return f'{base_url}/{self.format.format(agent_id=agent_id)}'
