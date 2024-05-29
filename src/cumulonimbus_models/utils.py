@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Any, Dict
 
 
-JSON = Dict[str, str | int | float | bool | None]
+JSON = Dict[str, Any]

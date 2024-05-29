@@ -1,6 +1,6 @@
 from datetime import datetime
 from enum import StrEnum
-from typing import Optional
+from typing import Any, Dict, Optional
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -22,12 +22,13 @@ class OperationResultStatus(StrEnum):
 
 class OperationType(StrEnum):
     UPDATE = 'UPDATE'
+    SHELL_COMMAND = 'SHELL_COMMAND'
 
 
 class Operation(BaseModel):
     id: str
     type: OperationType
-    parameters: JSON
+    parameters: Dict[str, Any]
 
 
 class SubmitOperationRequest(APIRequest):
