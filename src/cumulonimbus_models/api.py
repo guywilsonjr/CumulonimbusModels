@@ -1,10 +1,13 @@
-from pydantic import BaseModel, Field
+from typing import ClassVar
+
+from pydantic import BaseModel
 
 
 class APIRequest(BaseModel):
-    path: str = Field(exclude=True)
-    format: str = Field(exclude=True)
+    path: ClassVar[str]
+    format: ClassVar[str]
 
-    def get_url(self, base_url: str) -> str:
-        return f'{base_url}{self.format}'
+    @classmethod
+    def get_url(cls, base_url: str, **kwargs) -> str:
+        return f'{base_url}{cls.format.format(**kwargs)}'
 

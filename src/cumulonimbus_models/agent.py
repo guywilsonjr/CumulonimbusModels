@@ -1,12 +1,14 @@
 from enum import StrEnum
-from pydantic import BaseModel, Field
+from typing import ClassVar
+
+from pydantic import BaseModel
 from cumulonimbus_models.api import APIRequest
 from cumulonimbus_models.constants import REGISTER_AGENT_FORMAT, REGISTER_AGENT_PATH, UNREGISTER_AGENT_FORMAT, UNREGISTER_AGENT_PATH
 
 
 class AgentRegisterRequest(APIRequest):
-    path: str = Field(default=REGISTER_AGENT_PATH, exclude=True)
-    format: str = Field(default=REGISTER_AGENT_FORMAT, exclude=True)
+    path: ClassVar[str] = REGISTER_AGENT_PATH
+    format: ClassVar[str] = REGISTER_AGENT_FORMAT
     hostname: str
 
 
@@ -18,11 +20,12 @@ class AgentRegisterResponse(BaseModel):
 
 
 class UnregisterAgentRequest(APIRequest):
-    path: str = Field(default=UNREGISTER_AGENT_PATH, exclude=True)
-    format: str = Field(default=UNREGISTER_AGENT_FORMAT, exclude=True)
+    path: ClassVar[str] = UNREGISTER_AGENT_PATH
+    format: ClassVar[str] = UNREGISTER_AGENT_FORMAT
 
-    def get_url(self, base_url: str, agent_id: str) -> str:
-        return f'{base_url}{self.format.format(agent_id=agent_id)}'
+    @classmethod
+    def get_url(cls, base_url: str, agent_id: str) -> str:
+        return f'{base_url}{cls.format.format(agent_id=agent_id)}'
 
 
 class UnregisterAgentStatus(StrEnum):

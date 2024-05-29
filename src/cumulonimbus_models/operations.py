@@ -1,8 +1,8 @@
 from datetime import datetime
 from enum import StrEnum
-from typing import Any, Dict, Optional
+from typing import Any, ClassVar, Dict, Optional
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, model_validator
 
 from cumulonimbus_models.constants import SUBMIT_OPERATION_FORMAT, SUBMIT_OPERATION_PATH, UPDATE_OPERATION_RESULT_FORMAT, UPDATE_OPERATION_RESULT_PATH
 from cumulonimbus_models.api import APIRequest
@@ -32,8 +32,8 @@ class Operation(BaseModel):
 
 
 class SubmitOperationRequest(APIRequest):
-    path: str = Field(default=SUBMIT_OPERATION_PATH, exclude=True)
-    format: str = Field(default=SUBMIT_OPERATION_FORMAT, exclude=True)
+    path: ClassVar[str] = SUBMIT_OPERATION_PATH
+    format: ClassVar[str] = SUBMIT_OPERATION_FORMAT
     type: OperationType
     parameters: JSON
 
@@ -60,8 +60,8 @@ class OperationResult(BaseModel):
 
 
 class UpdateOperationResultRequest(APIRequest):
-    path: str = Field(default=UPDATE_OPERATION_RESULT_PATH, exclude=True)
-    format: str = Field(default=UPDATE_OPERATION_RESULT_FORMAT, exclude=True)
+    path: ClassVar[str] = UPDATE_OPERATION_RESULT_PATH
+    format: ClassVar[str] = UPDATE_OPERATION_RESULT_FORMAT
     started: datetime
     completed: datetime
     operation_result: OperationResult
