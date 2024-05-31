@@ -1,1 +1,3 @@
 setuptools-scm
+pip-tools
+-r requirements-test.txt

@@ -2,9 +2,8 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Any, ClassVar, Dict, Optional
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, model_validator
 
-from cumulonimbus_models.constants import SUBMIT_OPERATION_FORMAT, SUBMIT_OPERATION_PATH, UPDATE_OPERATION_RESULT_FORMAT, UPDATE_OPERATION_RESULT_PATH
 from cumulonimbus_models.api import APIRequest
 from cumulonimbus_models.utils import JSON
 
@@ -32,14 +31,9 @@ class Operation(BaseModel):
 
 
 class SubmitOperationRequest(APIRequest):
-    path: ClassVar[str] = SUBMIT_OPERATION_PATH
-    format: ClassVar[str] = SUBMIT_OPERATION_FORMAT
+    route_format: ClassVar[str] = '/agent/{agent_id}/operation/submit'
     type: OperationType
     parameters: JSON
-
-    @classmethod
-    def get_url(cls, base_url: str, agent_id: str) -> str:
-        return f'{base_url}{cls.format.format(agent_id=agent_id)}'
 
 
 class SubmitOperationResponse(BaseModel):
@@ -61,14 +55,7 @@ class OperationResult(BaseModel):
 
 
 class UpdateOperationResultRequest(APIRequest):
-    path: ClassVar[str] = UPDATE_OPERATION_RESULT_PATH
-    format: ClassVar[str] = UPDATE_OPERATION_RESULT_FORMAT
+    route_format: ClassVar[str] = '/agent/{agent_id}/operation/{operation_id}/result'
     started: datetime
     completed: datetime
     operation_result: OperationResult
-
-
-    @classmethod
-    def get_url(cls, base_url: str, agent_id: str, operation_id: str) -> str:
-        return f'{base_url}{cls.format.format(agent_id=agent_id, operation_id=operation_id)}'
-
